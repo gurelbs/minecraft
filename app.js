@@ -144,11 +144,12 @@ axe.parentElement.addEventListener('click' , () => {
 // add event to every cube
 let everyCube = document.querySelectorAll('.cube')
 everyCube.forEach(cube => cube.addEventListener('click', e => {
-    console.log(e.target);
+    // hendle decrease cubes
     if (shovel.parentElement.classList.contains('active-tool')){
         if (e.target.classList.contains('grass') || e.target.classList.contains('soil')){
             e.target.classList.remove('grass')
             e.target.classList.remove('soil')
+            e.target.removeAttribute('data-cube-type')
             soilInventoryNumber++
             soilInventory.textContent = soilInventoryNumber
         }
@@ -156,6 +157,7 @@ everyCube.forEach(cube => cube.addEventListener('click', e => {
     if (pickaxe.parentElement.classList.contains('active-tool')){
         if (e.target.classList.contains('rock')){
             e.target.classList.remove('rock')
+            e.target.removeAttribute('data-cube-type')
             rockInventoryNumber++
             rockInventory.textContent = rockInventoryNumber
         }
@@ -164,9 +166,46 @@ everyCube.forEach(cube => cube.addEventListener('click', e => {
         if (e.target.classList.contains('wood') || e.target.classList.contains('tree-leaves')){
             e.target.classList.remove('wood')
             e.target.classList.remove('tree-leaves')
+            e.target.removeAttribute('data-cube-type')
             woodInventoryNumber++
             woodInventory.textContent = woodInventoryNumber
         }
     }
+// hendle decrease cubes
+    if (woodInventory.classList.contains('active-inventory') ){
+        if (e.target.getAttribute('data-cube-type') === null || e.target.getAttribute('data-cube-type') === 'cloud'){
+            console.log(e.target,'its empty or cloud');
+            if (woodInventoryNumber > 0){
+                e.target.classList.add('wood')
+                woodInventoryNumber -= 1
+                woodInventory.textContent = woodInventoryNumber
+            }
+        }
+    }        
 }))
+// handle user build
+woodInventory.addEventListener('click', () => {
+    if (rockInventory.classList.contains('active-inventory') || soilInventory.classList.contains('active-inventory')){
+        rockInventory.classList.remove('active-inventory')
+        soilInventory.classList.remove('active-inventory')
+    } else {
+        woodInventory.classList.toggle('active-inventory')
+    }
+})
+rockInventory.addEventListener('click', () => {
+    if (woodInventory.classList.contains('active-inventory') || soilInventory.classList.contains('active-inventory')){
+        woodInventory.classList.remove('active-inventory')
+        soilInventory.classList.remove('active-inventory')
+    } else {
+        rockInventory.classList.toggle('active-inventory')
+    }
+})
+soilInventory.addEventListener('click', () => {
+    if (rockInventory.classList.contains('active-inventory') || woodInventory.classList.contains('active-inventory')){
+        rockInventory.classList.remove('active-inventory')
+        woodInventory.classList.remove('active-inventory')
+    } else {
+        soilInventory.classList.toggle('active-inventory')
+    }
+})
 
