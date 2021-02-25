@@ -10,11 +10,13 @@ let tools = $('.tools')
 let shovel = $('.shovel')
 let pickaxe = $('.pickaxe')
 let axe = $('.axe')
+let treeLeavesInventory = $('.tree-leaves-inventory')
 let woodInventory = $('.wood-inventory')
-let woodInventoryNumber  = 0;
 let soilInventory = $('.soil-inventory');
-let soilInventoryNumber = 0;
 let rockInventory = $('.rock-inventory')
+let treeLeavesInventoryNumber = 0
+let woodInventoryNumber  = 0;
+let soilInventoryNumber = 0;
 let rockInventoryNumber = 0;
 // remove landing page
 startGameBtn.addEventListener('click', () => {
@@ -171,14 +173,37 @@ everyCube.forEach(cube => cube.addEventListener('click', e => {
             woodInventory.textContent = woodInventoryNumber
         }
     }
-// hendle decrease cubes
-    if (woodInventory.classList.contains('active-inventory') ){
+// hendle increase cubes
+    if (woodInventory.classList.contains('active-inventory')){
         if (e.target.getAttribute('data-cube-type') === null || e.target.getAttribute('data-cube-type') === 'cloud'){
             console.log(e.target,'its empty or cloud');
             if (woodInventoryNumber > 0){
                 e.target.classList.add('wood')
+                e.target.setAttribute('data-cube-type', 'wood')
                 woodInventoryNumber -= 1
                 woodInventory.textContent = woodInventoryNumber
+            }
+        }
+    }        
+    if (rockInventory.classList.contains('active-inventory')){
+        if (e.target.getAttribute('data-cube-type') === null || e.target.getAttribute('data-cube-type') === 'cloud'){
+            console.log(e.target,'its empty or cloud');
+            if (rockInventoryNumber > 0){
+                e.target.classList.add('rock')
+                e.target.setAttribute('data-cube-type', 'rock')
+                rockInventoryNumber -= 1
+                rockInventory.textContent = rockInventoryNumber
+            }
+        }
+    }        
+    if (soilInventory.classList.contains('active-inventory')){
+        if (e.target.getAttribute('data-cube-type') === null || e.target.getAttribute('data-cube-type') === 'cloud'){
+            console.log(e.target,'its empty or cloud');
+            if (soilInventoryNumber > 0){
+                e.target.classList.add('soil')
+                e.target.setAttribute('data-cube-type', 'soil')
+                soilInventoryNumber -= 1
+                soilInventory.textContent = soilInventoryNumber
             }
         }
     }        
