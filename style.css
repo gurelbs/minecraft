@@ -1,0 +1,104 @@
+/* root */
+
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+:root{
+    --font-size-big: clamp(calc(1rem + 1vw), (2rem + 5vw), 6vw);
+    --font-size-medium: clamp(calc(1rem + 1vw), (2rem + 2vw), 3vw);
+    --font-size-small: calc(2vw + 1.5rem);
+}
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'VT323', monospace;
+}
+.unvisible{
+    display: none;
+}
+.visible{
+    visibility: visible;
+}
+
+/* landing-page */
+
+.game-landing-page{
+    height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    place-items: center;
+    color: white;
+    z-index: 1;
+    background: url('https://i.pinimg.com/originals/5c/2e/40/5c2e4089346a54d4ca6e1292c1e684ad.gif') no-repeat center center/cover;
+}
+.game-landing-page::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: -1;
+}
+.wellcome-msg{
+    font-size: var(--font-size-medium);
+    font-weight: lighter; 
+    text-align: center;
+}
+.minecraft{
+    color: aqua;
+    font-weight: bold;
+    letter-spacing: 5px;
+    font-size: clamp(calc(1rem + 1vw), (3rem + 8vw), 10vw);
+    background: -webkit-linear-gradient(35deg,#eee, rgb(204, 196, 127),#eee, rgb(39, 47, 161),#eee, rgb(39, 47, 161));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: block;
+    animation: minecraft 3s ease-in-out infinite;
+}
+.start-game-btn{
+    padding: .5rem 3rem;
+    font-size: var(--font-size-medium);
+    margin: var(--font-size-small) 0 0 0;
+    background-color: transparent;
+    border: 3px solid #eee;
+    border-radius: 7px;
+    color: #eee;
+    cursor: pointer;
+    transition: .2s ease-in-out;
+
+}
+.start-game-btn:hover{
+    background-color: rgba(148, 26, 26, 0.637);
+    transition: .2s ease-in-out;
+}
+.start-game-btn:active{
+    transform: scale(.95);
+    transition: 0s;
+}
+.landing-page-footer {
+    position: absolute;
+    bottom: 1vw;
+}
+.heart-symbol{
+    color: rgb(207, 24, 55);
+}
+.landing-page-footer a {
+    color: aqua;
+}
+
+
+/* main game */
+.main-game{
+    height: 100vh;
+    display: grid;
+    position: absolute;
+    top: 0;
+    grid-template-columns: repeat(40,1fr);
+    grid-template-rows: repeat(20,1fr);
+}
+
+@keyframes minecraft {50% {letter-spacing: 10px;}}
