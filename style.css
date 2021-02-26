@@ -14,11 +14,8 @@
 }
 .unvisible{
     display: none;
+    visibility: hidden;
 }
-.visible{
-    visibility: visible;
-}
-
 /* landing-page */
 
 .game-landing-page{

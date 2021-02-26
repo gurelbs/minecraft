@@ -25,7 +25,7 @@ let resetMincraft = $('.reset-mincraft')
 let backToStart = $('.back-to-start')
 // remove landing page
 startGameBtn.addEventListener('click', () => {
-    landingPage.remove()
+    landingPage.classList.add('unvisible')
 });
 // create matrix
 let rows = 20;
@@ -119,15 +119,19 @@ const createClouds = () => {
     createCloudsFunction(1,2,6,2)
     createCloudsFunction(2,3,5,3)
     // clous 3
-    createCloudsFunction(0,3,5,1)
+    createCloudsFunction(1,3,5,1)
     createCloudsFunction(1,2,35,30)
     createCloudsFunction(2,3,32,34)
 }
 
-
-const randomTreeNumber1 = () => Math.floor(Math.random() * 8) + 4
-const randomTreeNumber2 = () => Math.floor(Math.random() * 8) + 13
-const randomTreeNumber3 = () => Math.floor(Math.random() * 9) + 29
+const randomTreeFunction = () => {
+    const randomTreeNumber1 = () => Math.floor(Math.random() * 8) + 4
+    const randomTreeNumber2 = () => Math.floor(Math.random() * 8) + 13
+    const randomTreeNumber3 = () => Math.floor(Math.random() * 9) + 29
+    createRandomTree(randomTreeNumber1())
+    createRandomTree(randomTreeNumber2())
+    createRandomTree(randomTreeNumber3())
+}
 
 const removeInventoryClassList = () => {
     woodInventory.classList.remove('active-inventory')
@@ -184,7 +188,7 @@ sword.parentElement.addEventListener('click' , () => {
 })
 // add event to every cube
 let everyCube = document.querySelectorAll('.cube')
-everyCube.forEach(cube => cube.addEventListener('click', e => {
+let mainGameFunctions = e => {
     // hendle decrease cubes
     if (shovel.parentElement.classList.contains('active-tool')){
         if (e.target.classList.contains('grass') || e.target.classList.contains('soil')){
@@ -219,7 +223,7 @@ everyCube.forEach(cube => cube.addEventListener('click', e => {
             treeLeavesInventory.textContent = treeLeavesInventoryNumber
         }
     }
-// hendle increase cubes
+    // hendle increase cubes
     if (treeLeavesInventory.classList.contains('active-inventory')){
         if (e.target.getAttribute('data-cube-type') === null || e.target.getAttribute('data-cube-type') === 'cloud'){
             console.log(e.target,'its empty or cloud');
@@ -264,7 +268,8 @@ everyCube.forEach(cube => cube.addEventListener('click', e => {
             }
         }
     }        
-}))
+}
+everyCube.forEach(cube => cube.addEventListener('click', e => mainGameFunctions(e)))
 // handle user build
 treeLeavesInventory.addEventListener('click', () => {
     if (woodInventory.classList.contains('active-inventory') || soilInventory.classList.contains('active-inventory') || rockInventory.classList.contains('active-inventory')){
@@ -311,9 +316,14 @@ const gameStart = () => {
     createGrass()
     createMount()
     createClouds()
-    createRandomTree(randomTreeNumber1())
-    createRandomTree(randomTreeNumber2())
-    createRandomTree(randomTreeNumber3())
+    randomTreeFunction()
 }
+
+resetMincraft.addEventListener('click', () => {
+    location.reload()
+})
+backToStart.addEventListener('click', () => {
+    landingPage.classList.remove('unvisible')
+})
 
 gameStart()
