@@ -11,7 +11,12 @@
     margin: 0;
     box-sizing: border-box;
     font-family: 'VT323', monospace;
+
 }
+html,body{
+    overflow-x: hidden;
+}
+
 .unvisible{
     display: none;
     visibility: hidden;
@@ -20,6 +25,8 @@
 
 .game-landing-page{
     height: 100vh;
+    max-height: 100vh;
+    width: auto;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -29,7 +36,7 @@
     z-index: 1;
     background: url('https://i.pinimg.com/originals/5c/2e/40/5c2e4089346a54d4ca6e1292c1e684ad.gif') no-repeat center center/cover;
 }
-.game-landing-page::before{
+.game-landing-page::before,.how-to-play-container::before{
     content: '';
     position: absolute;
     top: 0;
@@ -92,13 +99,96 @@
 .landing-page-footer a {
     color: aqua;
 }
+/* how-to-play-container */
+.game-landing-page::before,.how-to-play-container::before{
+    background-color: rgba(0, 0, 0, 0.6);
+}
+.how-to-play-container{
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    background: url('https://64.media.tumblr.com/0a4121ef4c1fcb93b82b09f24a1d2f78/tumblr_pw5caeUPps1qemas4o1_540.gifv') no-repeat center center/cover;
+    color: white;
+}
+.how-to-play-container .wrap-all{
+    display: flex;
+    flex-direction: column;
+    place-content: center;
+    height: 100%;
+}
+.how-to-play-container .header-wrap {
+    text-align: center;
+    font-size: 2vw;
+    margin: 1vw;
+}
+.how-to-play-container p {
+    text-align: center;
+    font-size: 1.8vw;
+}
+.how-to-play-container ul {
+    margin: 0 auto;
+    font-size: 1.5vw;
+}
+.how-to-play-container table {
+    justify-content: center;
+    margin: 0 auto;
+}
+.how-to-play-container table tr{
+    margin: 2vw;
+}
+.how-to-play-container table td{
+    font-size: calc(3vw + 1rem);
+    text-align: center;
+    width: calc(3vw + 1rem);
+    height: calc(3vw + 1rem);
+}
+.tree-leaves-explan {
+    background: url('./images/tree-leaves.png') no-repeat center center/cover;
+}
+.wood-explan {
+    background: url('./images/wood.png') no-repeat center center/cover;
+}
+.rock-explan {
+    background: url('./images/rock.png') no-repeat center center/cover;
+}
+.soil-explan {
+    background: url('./images/soil.jpg') no-repeat center center/cover;
+}
 
+.how-to-play-container .header-wrap a {
+    color: yellow;
+    text-decoration: none;
+}
+
+.back-to-homepage{
+    text-align: center;
+}
+.back-to-homepage .back-to-homepage-btn {
+    background-color: transparent;
+    border: 1px solid yellow;
+    border-radius: 7px;
+    color: white;
+    padding: 1vw 2vw;
+    margin: 5vh 0 0 0 ;
+    cursor: pointer;
+    transition: .25s ease-in-out;
+    font-size: calc(1vw + 1rem);
+    outline: none;
+}
+.back-to-homepage-btn:hover{
+    background-color: rgba(255, 255, 0, 0.15);
+}
+.back-to-homepage-btn:active{
+    transform: scale(.95);
+    outline: none;
+}
 /* main game */
 
 .main-game{
     height: 100vh;
     width: 100vw;
-    max-width:100%;
     display: grid;
     position: absolute;
     top: 0;
@@ -108,6 +198,7 @@
 .minecraft-world {
     background-color: skyblue;
     display: grid;
+    position: relative;
     height: 100%;
     width: 100%;
     grid-template-rows: repeat(20,auto);
@@ -118,10 +209,12 @@
     color: white;
 }
 /* cubes */
-/* .cube {
-    border:1px solid transparent;
-} */
+
+.cube-transition,.cube {
+    transition: .2s ease-in-out;
+}
 .cube:hover {
+    transition: .2s ease-in-out;
     box-shadow: inset 0 0 5px rgb(238, 238, 238);
     cursor: pointer;
 }
@@ -194,19 +287,19 @@
     font-weight: bolder;
     letter-spacing: .1vw;
 }
-.tools .sword{
+.tools .sword, .sword-explan{
     background: url('./images/sword.png') no-repeat center center/contain;
 }
-.tools .axe{
+.tools .axe , .axe-explan{
     background: url('./images/axe.png') no-repeat center center/contain;
 }
-.tools .pickaxe {
+.tools .pickaxe , .pickaxe-explan{
     background: url('./images/Pickaxe.png') no-repeat center center/contain;
 }
-.tools .shovel {
+.tools .shovel , .shovel-explan{
     background: url('./images/shovel.png') no-repeat center center/contain;
 }
-.tools .sword::before{
+.tools .sword::before {
     content: 'sword';
     position: absolute;
     bottom: -1rem;
@@ -215,7 +308,7 @@
     margin: 0 auto;
     font-size: calc(.5rem + 1.5vh);
 }
-.tools .axe::before{
+.tools .axe::before {
     content: 'axe';
     position: absolute;
     bottom: -1rem;
@@ -224,7 +317,7 @@
     margin: 0 auto;
     font-size: calc(.5rem + 1.5vh);
 }
-.tools .pickaxe::before{
+.tools .pickaxe::before {
     content: 'pickaxe';
     position: absolute;
     bottom: -1rem;
@@ -233,7 +326,7 @@
     right: 1rem;
     font-size: calc(.5rem + 1.5vh);
 }
-.tools .shovel::before{
+.tools .shovel::before {
     content: 'shovel';
     position: absolute;
     bottom: -1rem;

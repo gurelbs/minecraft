@@ -2,6 +2,9 @@
 const $ = x => document.querySelector(x);
 // root variable
 let landingPage = $('.game-landing-page');
+let howToPlay = $('.how-to-play-container')
+let howToPlayBtn = $('.how-to-play')
+let backToHomepageBtn = $('.back-to-homepage-btn')
 let startGameBtn = $('.start-game-btn');
 let mainGame = $('.main-game');
 let minecraftWorld = $('.minecraft-world');
@@ -23,22 +26,41 @@ let rockInventoryNumber = 0;
 // reset
 let resetMincraft = $('.reset-mincraft')
 let backToStart = $('.back-to-start')
-// remove landing page
+
+//  handle landing page and how to play
+
+mainGame.classList.add('unvisible')
+howToPlay.classList.add('unvisible')
+
 startGameBtn.addEventListener('click', () => {
     landingPage.classList.add('unvisible')
+    mainGame.classList.remove('unvisible')
 });
+howToPlayBtn.addEventListener('click', () => {
+    landingPage.classList.add('unvisible')
+    mainGame.classList.add('unvisible')
+    howToPlay.classList.remove('unvisible')
+})
+backToHomepageBtn.addEventListener('click', () => {
+    landingPage.classList.remove('unvisible')
+    howToPlay.classList.add('unvisible')
+       
+})
 // create matrix
 let rows = 20;
 let columns = 40;
-let minecraft = []
+let minecraft = [];
 const matrix =  () => {
     for (let row = 0; row < rows; row++){
         minecraft[row] = []
         for (let col = 0; col < columns; col++){
             minecraft[row][col] = document.createElement('div')
+            minecraft[row][col].style.transition =  '.2s ease-in-out';
+
             minecraft[row][col].setAttribute(`data-row`, row);
             minecraft[row][col].setAttribute(`data-col`, col);
             minecraft[row][col].classList.add(`cube`);
+            minecraft[row][col].classList.add(`cube-transition`);
             minecraftWorld.appendChild(minecraft[row][col])
         }
     }
@@ -70,7 +92,7 @@ const createRandomTree = randomColumns => {
             for (let row = 5; row < 9; row ++){
                 for (let col = randomColumns - 3; col < randomColumns + 2; col++){
                     minecraft[row][col].setAttribute('data-cube-type', 'tree-leaves')
-                    minecraft[row][col].classList.add('tree-leaves')                        
+                    minecraft[row][col].classList.add('tree-leaves')
                 }
             }
         }
@@ -111,21 +133,22 @@ const createCloudsFunction = (rowstart,rowend,columnstart,columnend) => {
 }
 const createClouds = () => {
     // cloud 1
-    createCloudsFunction(0,1,17,15)
-    createCloudsFunction(1,2,18,14)
-    createCloudsFunction(2,3,17,13)
+    createCloudsFunction(0,1,34,32)
+    createCloudsFunction(2,5,17,15)
+    createCloudsFunction(3,6,18,14)
+    createCloudsFunction(4,7,17,13)
     // cloud 2
-    createCloudsFunction(0,1,5,1)
-    createCloudsFunction(1,2,6,2)
-    createCloudsFunction(2,3,5,3)
-    // clous 3
     createCloudsFunction(1,3,5,1)
+    createCloudsFunction(2,4,6,2)
+    createCloudsFunction(3,5,5,3)
+    // clous 3
     createCloudsFunction(1,2,35,30)
+    createCloudsFunction(2,3,34,29)
     createCloudsFunction(2,3,32,34)
 }
 
 const randomTreeFunction = () => {
-    const randomTreeNumber1 = () => Math.floor(Math.random() * 8) + 4
+    const randomTreeNumber1 = () => Math.floor(Math.random() * 7) + 4
     const randomTreeNumber2 = () => Math.floor(Math.random() * 8) + 13
     const randomTreeNumber3 = () => Math.floor(Math.random() * 9) + 29
     createRandomTree(randomTreeNumber1())
@@ -146,46 +169,50 @@ const removeToolscClassList = () => {
     shovel.parentElement.classList.remove('active-tool')   
 }
 // handle tool click
-shovel.parentElement.addEventListener('click' , () => {
-    if (pickaxe.parentElement.classList.contains('active-tool') || axe.parentElement.classList.contains('active-tool') || sword.parentElement.classList.contains('active-tool')){
-        axe.parentElement.classList.remove('active-tool')
-        pickaxe.parentElement.classList.remove('active-tool')
-        sword.parentElement.classList.remove('active-tool')
-    } else {
-        removeInventoryClassList()
-        shovel.parentElement.classList.toggle('active-tool')
-    }
-})
-pickaxe.parentElement.addEventListener('click' , () => {
-    if (shovel.parentElement.classList.contains('active-tool') || axe.parentElement.classList.contains('active-tool') || sword.parentElement.classList.contains('active-tool')){
-        shovel.parentElement.classList.remove('active-tool')
-        axe.parentElement.classList.remove('active-tool')
-        sword.parentElement.classList.remove('active-tool')
-    } else {
-        removeInventoryClassList()
-        pickaxe.parentElement.classList.toggle('active-tool')
-    }
-})
-axe.parentElement.addEventListener('click' , () => {
-    if (shovel.parentElement.classList.contains('active-tool') || pickaxe.parentElement.classList.contains('active-tool') || sword.parentElement.classList.contains('active-tool')){
-            shovel.parentElement.classList.remove('active-tool')
+    shovel.parentElement.addEventListener('click' , () => {
+        console.log('nos');
+        if (pickaxe.parentElement.classList.contains('active-tool') || axe.parentElement.classList.contains('active-tool') || sword.parentElement.classList.contains('active-tool')){
+            axe.parentElement.classList.remove('active-tool')
             pickaxe.parentElement.classList.remove('active-tool')
             sword.parentElement.classList.remove('active-tool')
         } else {
             removeInventoryClassList()
-            axe.parentElement.classList.toggle('active-tool')
-    }
-})
-sword.parentElement.addEventListener('click' , () => {
-    if (shovel.parentElement.classList.contains('active-tool') || pickaxe.parentElement.classList.contains('active-tool') || axe.parentElement.classList.contains('active-tool')){
+            
+            shovel.parentElement.classList.toggle('active-tool')
+        }
+    })
+    pickaxe.parentElement.addEventListener('click' , () => {
+        if (shovel.parentElement.classList.contains('active-tool') || axe.parentElement.classList.contains('active-tool') || sword.parentElement.classList.contains('active-tool')){
             shovel.parentElement.classList.remove('active-tool')
-            pickaxe.parentElement.classList.remove('active-tool')
             axe.parentElement.classList.remove('active-tool')
+            sword.parentElement.classList.remove('active-tool')
         } else {
             removeInventoryClassList()
-            sword.parentElement.classList.toggle('active-tool')
-    }
-})
+            pickaxe.parentElement.classList.toggle('active-tool')
+        }
+    })
+    axe.parentElement.addEventListener('click' , () => {
+        if (shovel.parentElement.classList.contains('active-tool') || pickaxe.parentElement.classList.contains('active-tool') || sword.parentElement.classList.contains('active-tool')){
+                shovel.parentElement.classList.remove('active-tool')
+                pickaxe.parentElement.classList.remove('active-tool')
+                sword.parentElement.classList.remove('active-tool')
+            } else {
+                removeInventoryClassList()
+                axe.parentElement.classList.toggle('active-tool')
+        }
+    })
+    sword.parentElement.addEventListener('click' , () => {
+        if (shovel.parentElement.classList.contains('active-tool') || pickaxe.parentElement.classList.contains('active-tool') || axe.parentElement.classList.contains('active-tool')){
+                shovel.parentElement.classList.remove('active-tool')
+                pickaxe.parentElement.classList.remove('active-tool')
+                axe.parentElement.classList.remove('active-tool')
+            } else {
+                removeInventoryClassList()
+                sword.parentElement.classList.toggle('active-tool')
+        }
+    })
+
+
 // add event to every cube
 let everyCube = document.querySelectorAll('.cube')
 let mainGameFunctions = e => {
@@ -271,46 +298,46 @@ let mainGameFunctions = e => {
 }
 everyCube.forEach(cube => cube.addEventListener('click', e => mainGameFunctions(e)))
 // handle user build
-treeLeavesInventory.addEventListener('click', () => {
-    if (woodInventory.classList.contains('active-inventory') || soilInventory.classList.contains('active-inventory') || rockInventory.classList.contains('active-inventory')){
-        woodInventory.classList.remove('active-inventory')
-        rockInventory.classList.remove('active-inventory')
-        soilInventory.classList.remove('active-inventory')
-    } else {
-        removeToolscClassList()
-        treeLeavesInventory.classList.toggle('active-inventory')
-    }
-})
-woodInventory.addEventListener('click', () => {
-    if (rockInventory.classList.contains('active-inventory') || soilInventory.classList.contains('active-inventory') || treeLeavesInventory.classList.contains('active-inventory')){
-        rockInventory.classList.remove('active-inventory')
-        soilInventory.classList.remove('active-inventory')
-        treeLeavesInventory.classList.remove('active-inventory')
-    } else {
-        removeToolscClassList()
-        woodInventory.classList.toggle('active-inventory')
-    }
-})
-rockInventory.addEventListener('click', () => {
-    if (woodInventory.classList.contains('active-inventory') || soilInventory.classList.contains('active-inventory') || treeLeavesInventory.classList.remove('active-inventory')){
-        woodInventory.classList.remove('active-inventory')
-        soilInventory.classList.remove('active-inventory')
-        treeLeavesInventory.classList.remove('active-inventory')
-    } else {
-        removeToolscClassList()
-        rockInventory.classList.toggle('active-inventory')
-    }
-})
-soilInventory.addEventListener('click', () => {
-    if (rockInventory.classList.contains('active-inventory') || woodInventory.classList.contains('active-inventory') || treeLeavesInventory.classList.contains('active-inventory')){
-        rockInventory.classList.remove('active-inventory')
-        woodInventory.classList.remove('active-inventory')
-        treeLeavesInventory.classList.remove('active-inventory')
-    } else {
-        removeToolscClassList()
-        soilInventory.classList.toggle('active-inventory')
-    }
-}) 
+    treeLeavesInventory.addEventListener('click', () => {
+        if (woodInventory.classList.contains('active-inventory') || soilInventory.classList.contains('active-inventory') || rockInventory.classList.contains('active-inventory')){
+            woodInventory.classList.remove('active-inventory')
+            rockInventory.classList.remove('active-inventory')
+            soilInventory.classList.remove('active-inventory')
+        } else {
+            removeToolscClassList()
+            treeLeavesInventory.classList.toggle('active-inventory')
+        }
+    })
+    woodInventory.addEventListener('click', () => {
+        if (rockInventory.classList.contains('active-inventory') || soilInventory.classList.contains('active-inventory') || treeLeavesInventory.classList.contains('active-inventory')){
+            rockInventory.classList.remove('active-inventory')
+            soilInventory.classList.remove('active-inventory')
+            treeLeavesInventory.classList.remove('active-inventory')
+        } else {
+            removeToolscClassList()
+            woodInventory.classList.toggle('active-inventory')
+        }
+    })
+    rockInventory.addEventListener('click', () => {
+        if (woodInventory.classList.contains('active-inventory') || soilInventory.classList.contains('active-inventory') || treeLeavesInventory.classList.remove('active-inventory')){
+            woodInventory.classList.remove('active-inventory')
+            soilInventory.classList.remove('active-inventory')
+            treeLeavesInventory.classList.remove('active-inventory')
+        } else {
+            removeToolscClassList()
+            rockInventory.classList.toggle('active-inventory')
+        }
+    })
+    soilInventory.addEventListener('click', () => {
+        if (rockInventory.classList.contains('active-inventory') || woodInventory.classList.contains('active-inventory') || treeLeavesInventory.classList.contains('active-inventory')){
+            rockInventory.classList.remove('active-inventory')
+            woodInventory.classList.remove('active-inventory')
+            treeLeavesInventory.classList.remove('active-inventory')
+        } else {
+            removeToolscClassList()
+            soilInventory.classList.toggle('active-inventory')
+        }
+    }) 
 const gameStart = () => {
     createLand()
     createGrass()
@@ -319,11 +346,12 @@ const gameStart = () => {
     randomTreeFunction()
 }
 
-resetMincraft.addEventListener('click', () => {
-    location.reload()
-})
 backToStart.addEventListener('click', () => {
     landingPage.classList.remove('unvisible')
+})
+
+resetMincraft.addEventListener('click', () => {
+    location.reload()
 })
 
 gameStart()
