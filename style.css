@@ -57,7 +57,7 @@ html,body{
     color: aqua;
     font-weight: bold;
     letter-spacing: 5px;
-    font-size: clamp(calc(1rem + 1vw), (3rem + 8vw), 10vw);
+    font-size: 10vw;
     background: -webkit-linear-gradient(35deg,#eee, rgb(204, 196, 127),#eee, rgb(39, 47, 161),#eee, rgb(39, 47, 161));
     background-clip: text;
     -webkit-background-clip: text;
@@ -69,15 +69,16 @@ html,body{
     display: flex;
 }
 .btn{
-    padding: .25rem 2rem;
+    padding: .25vw 2vw;
     font-size: var(--font-size-medium);
-    margin: .5rem;
+    margin: .5vw;
     background-color: transparent;
-    border: 3px solid #eee;
-    border-radius: 7px;
+    border: .3vw solid #eee;
+    border-radius: 1vw;
     color: #eee;
     cursor: pointer;
     transition: .2s ease-in-out;
+    font-size: 3vw;
 
 }
 .start-game-btn{
@@ -163,13 +164,13 @@ html,body{
 .how-to-play-container table {
     justify-content: center;
     margin: 0 auto;
-    border-spacing: 15px;
+    border-spacing: 1.5vw;
 }
 .how-to-play-container table tr{
     margin: 2vw;
 }
 .how-to-play-container table td{
-    font-size: calc(3vw + 1rem);
+    font-size: 2vw;
     text-align: center;
     width: calc(3vw + 1rem);
     height: calc(3vw + 1rem);
@@ -248,10 +249,10 @@ position: relative;
 }
 .back-to-homepage .back-to-homepage-btn {
     background-color: transparent;
-    border: 1px solid yellow;
-    border-top: 5px solid yellow;
-    border-bottom: 5px solid yellow;
-    border-radius: 7px;
+    border: .05vw solid yellow;
+    border-top: .35vw solid yellow;
+    border-bottom: .35vw solid yellow;
+    border-radius: .7vw;
     color: white;
     padding: 1vw 2vw;
     margin: 1vw 0 0 0;
@@ -514,9 +515,3 @@ position: relative;
     transform: scale(1.1);
 }
 @keyframes minecraft {50% {letter-spacing: 10px;}}
-
-@media (min-width: 368px) and (max-width: 1024px){
-    html,body{
-        overflow: scroll;
-    }
-  }
