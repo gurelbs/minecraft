@@ -13,7 +13,9 @@
     font-family: 'VT323', monospace;
 }
 html,body{
-    overflow-x: hidden;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
 }
 
 .unvisible{
@@ -24,7 +26,7 @@ html,body{
 
 .game-landing-page{
     height: 100vh;
-    max-height: 100vh;
+    overflow: hidden;
     width: auto;
     position: relative;
     display: flex;
@@ -35,6 +37,7 @@ html,body{
     z-index: 1;
     background: url('https://i.pinimg.com/originals/5c/2e/40/5c2e4089346a54d4ca6e1292c1e684ad.gif') no-repeat center center/cover;
 }
+
 .game-landing-page::before,.how-to-play-container::before{
     content: '';
     position: absolute;
@@ -91,16 +94,18 @@ html,body{
 .landing-page-footer {
     position: absolute;
     bottom: 1vw;
+    font-size: 2vw;
 }
 .heart-symbol{
     color: rgb(207, 24, 55);
 }
 .landing-page-footer a {
     color: aqua;
+    text-decoration: none;
 }
 /* how-to-play-container */
 .game-landing-page::before,.how-to-play-container::before{
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.55);
 }
 .how-to-play-container{
     height: 100vh;
@@ -185,6 +190,16 @@ html,body{
 .tree-leaves-explan,.wood-explan,.rock-explan,.soil-explan{
 position: relative;
 }
+.sword-explan,.axe-explan,.pickaxe-explan,.shovel-explan,
+.tree-leaves-explan,.wood-explan,.rock-explan,.soil-explan {
+    transition: .25s ease-in-out;
+}
+.sword-explan:hover,.axe-explan:hover,.pickaxe-explan:hover,.shovel-explan:hover,
+.tree-leaves-explan:hover,.wood-explan:hover,.rock-explan:hover,.soil-explan:hover {
+    transform: scale(1.1);
+    transition: .25s ease-in-out;
+    box-shadow: 0 0 1vw black;
+}
 .sword-explan::after,.axe-explan::after,.pickaxe-explan::after,.shovel-explan::after,
 .tree-leaves-explan::after,.wood-explan::after,.rock-explan::after,.soil-explan::after{
     position: absolute;
@@ -234,6 +249,8 @@ position: relative;
 .back-to-homepage .back-to-homepage-btn {
     background-color: transparent;
     border: 1px solid yellow;
+    border-top: 5px solid yellow;
+    border-bottom: 5px solid yellow;
     border-radius: 7px;
     color: white;
     padding: 1vw 2vw;
@@ -244,7 +261,13 @@ position: relative;
     outline: none;
 }
 .back-to-homepage-btn:hover{
-    background-color: rgba(255, 255, 0, 0.15);
+    background-color: rgb(255, 255, 0);
+    border: 1px solid transparent;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    color: black;
+    font-weight: bolder;
+    letter-spacing: 1px;
 }
 .back-to-homepage-btn:active{
     transform: scale(.95);
@@ -309,9 +332,12 @@ position: relative;
     text-align: center;
     width: 100%;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
 .sidebar .tools-txt{
-    font-size: calc(2vw + 1rem);
+    font-size: 3.3vw;
 }
 .sidebar .tools,.inventory-cube-wrap{
     display: inline-grid;
@@ -326,9 +352,8 @@ position: relative;
 .tools .border{
     border: 0.1vh solid rgb(136, 136, 136);
     border-radius: .5vw;
-    height: calc(5rem + 5vh);
-    padding: 1rem;
-    width: max-content;
+    height: 5vw;
+    padding: 1vw;
     transition: .15s ease-in-out;
 }
 .tools .border:hover{
@@ -345,9 +370,12 @@ position: relative;
     box-shadow: 0 0 30px black;
     transform: scale(1.05);    
 }
+.tools{
+    width: 70%;
+    margin: 0 auto;
+}
 .tools .tool{
-    padding: calc(1rem + 1vw);
-    width: fit-content;
+    padding: 1vw;
     position: relative;
     text-transform: uppercase;
     font-weight: bolder;
@@ -368,45 +396,44 @@ position: relative;
 .tools .sword::before {
     content: 'sword';
     position: absolute;
-    bottom: -1rem;
+    bottom: -1vw;
     left: 0;
     right: 0;
-    margin: 0 auto;
-    font-size: calc(.5rem + 1.5vh);
+    font-size: .8vw;
 }
 .tools .axe::before {
     content: 'axe';
     position: absolute;
-    bottom: -1rem;
+    bottom: -1vw;
     left: 0;
     right: 0;
     margin: 0 auto;
-    font-size: calc(.5rem + 1.5vh);
+    font-size: .8vw;
 }
 .tools .pickaxe::before {
     content: 'pickaxe';
     position: absolute;
-    bottom: -1rem;
+    bottom: -1vw;
     left: 0;
+    right: 0;
     margin: 0 auto;
-    right: 1rem;
-    font-size: calc(.5rem + 1.5vh);
+    font-size: .8vw;
 }
 .tools .shovel::before {
     content: 'shovel';
     position: absolute;
-    bottom: -1rem;
+    bottom: -1vw;
     left: 0;
     margin: 0 auto;
     right: 1rem;
-    font-size: calc(.5rem + 1.5vh);
+    font-size: .8vw;
 }
 
 .inventory-cube-wrap div{
     border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 7px;
-    width: calc(3vw + 2rem);
-    height: calc(3vw + 2rem);
+    width: 3vw;
+    height: 3vw;
     box-shadow: inset 0 0 15px black;
     transition: 0.2s ease-in-out;
 }
@@ -417,24 +444,24 @@ position: relative;
 }
 .inventory-cube-wrap .tree-leaves-inventory {
     background: url('./images/tree-leaves.png') no-repeat center center/cover;
-    font-size: calc(2rem + 1vw);
+    font-size: 2vw;
     font-weight: bolder;
     text-align: center;
 } 
 .inventory-cube-wrap .wood-inventory {
     background: url('./images/wood.png') no-repeat center center/cover;
-    font-size: calc(2rem + 1vw);
+    font-size: 2vw;
     font-weight: bolder;
     text-align: center;
 } 
 .inventory-cube-wrap .rock-inventory {
     background: url('./images/rock.png') no-repeat center center/cover;
-    font-size: calc(2rem + 1vw);
+    font-size: 2vw;
     font-weight: bolder;
 } 
 .inventory-cube-wrap .soil-inventory {
     background: url('./images/soil.jpg') no-repeat center center/cover;
-    font-size: calc(2rem + 1vw);
+    font-size: 2vw;
     font-weight: bolder;
 }
 .active-inventory{
@@ -442,18 +469,18 @@ position: relative;
     transition: 0.2s ease-in-out;
 }
 .control-btn{
-    padding: 3rem;
-    margin-top: 3rem;
+    padding: 3vw;
+    margin-top: 3vw;
     display: flex;
     flex-direction: column;
     
 }
 .control-btn div {
-    margin: 1rem auto;
-    padding: 1rem;
+    margin: 1vw auto;
+    padding: 1vw;
     position: relative;
     width: 100%;
-    font-size: calc(1vw + 1rem);
+    font-size: 1vw;
     border: 1px solid rgba(238, 238, 238, 0.103);
     border-radius: 7px;
     transition: .25s ease-in-out;
@@ -470,12 +497,20 @@ position: relative;
     transition: .15s ease-in-out;
 
 }
+.how-to-play-game-btn:hover{
+    transform: scale(1.1);
+    background-color: rgba(204, 206, 68, 0.25);
+}
+.reset-mincraft{
+    background-color: rgba(206, 84, 68, 0.25);
+}
 .reset-mincraft:hover{
-    background-color: rgba(149, 154, 218, 0.25);
+    background-color: rgba(206, 84, 68, 0.644);
     transform: scale(1.1);
 }
+
 .back-to-start:hover{
-    background-color: rgba(228, 11, 29, 0.25);
+    background-color: rgba(11, 221, 228, 0.5);
     transform: scale(1.1);
 }
 @keyframes minecraft {50% {letter-spacing: 10px;}}

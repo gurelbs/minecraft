@@ -4,6 +4,7 @@ const $ = x => document.querySelector(x);
 let landingPage = $('.game-landing-page');
 let howToPlay = $('.how-to-play-container')
 let howToPlayBtn = $('.how-to-play')
+let howToPlayGameBtn = $('.how-to-play-game-btn')
 let backToHomepageBtn = $('.back-to-homepage-btn')
 let startGameBtn = $('.start-game-btn');
 let mainGame = $('.main-game');
@@ -36,15 +37,17 @@ startGameBtn.addEventListener('click', () => {
     landingPage.classList.add('unvisible')
     mainGame.classList.remove('unvisible')
 });
-howToPlayBtn.addEventListener('click', () => {
+const howToPlayBtnClick = () => {
     landingPage.classList.add('unvisible')
     mainGame.classList.add('unvisible')
     howToPlay.classList.remove('unvisible')
-})
+}
+howToPlayBtn.addEventListener('click', howToPlayBtnClick)
+howToPlayGameBtn.addEventListener('click', howToPlayBtnClick)
+
 backToHomepageBtn.addEventListener('click', () => {
     landingPage.classList.remove('unvisible')
     howToPlay.classList.add('unvisible')
-       
 })
 // create matrix
 let rows = 20;
