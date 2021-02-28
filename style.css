@@ -172,8 +172,8 @@ html,body{
 .how-to-play-container table td{
     font-size: 2vw;
     text-align: center;
-    width: calc(3vw + 1rem);
-    height: calc(3vw + 1rem);
+    width: 3vw;
+    height: 3vw;
 }
 .tree-leaves-explan {
     background: url('./images/tree-leaves.png') no-repeat center center/cover;
