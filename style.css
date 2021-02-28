@@ -514,3 +514,9 @@ position: relative;
     transform: scale(1.1);
 }
 @keyframes minecraft {50% {letter-spacing: 10px;}}
+
+@media (min-width: 368px) and (max-width: 1024px){
+    html,body{
+        overflow: scroll;
+    }
+  }
