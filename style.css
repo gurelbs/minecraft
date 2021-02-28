@@ -11,7 +11,6 @@
     margin: 0;
     box-sizing: border-box;
     font-family: 'VT323', monospace;
-
 }
 html,body{
     overflow-x: hidden;
@@ -120,20 +119,46 @@ html,body{
 }
 .how-to-play-container .header-wrap {
     text-align: center;
-    font-size: 2vw;
+    font-weight: bold;
+    font-size: 1.5vw;
     margin: 1vw;
+}
+.how-to-play-container .header-wrap h1{
+    font-weight: lighter;
+    letter-spacing: 1px;
 }
 .how-to-play-container p {
     text-align: center;
     font-size: 1.8vw;
 }
+.how-to-play-container .each-tool-explan-txt {
+    text-transform: uppercase;
+    padding: 1vw;
+    color: yellow ;
+}
 .how-to-play-container ul {
     margin: 0 auto;
     font-size: 1.5vw;
 }
+.how-to-play-container .second-ul {
+    list-style: none;
+    text-align: center;
+}
+.how-to-play-container .second-ul li{
+    margin: .5vw 0;
+}
+.how-to-play-container .second-ul li:last-child{
+    color: yellow;
+    font-weight: bold;
+    font-size: 2vw;
+    letter-spacing: 2px;
+    margin-bottom: 0;
+}
+
 .how-to-play-container table {
     justify-content: center;
     margin: 0 auto;
+    border-spacing: 15px;
 }
 .how-to-play-container table tr{
     margin: 2vw;
@@ -156,7 +181,48 @@ html,body{
 .soil-explan {
     background: url('./images/soil.jpg') no-repeat center center/cover;
 }
-
+.sword-explan,.axe-explan,.pickaxe-explan,.shovel-explan,
+.tree-leaves-explan,.wood-explan,.rock-explan,.soil-explan{
+position: relative;
+}
+.sword-explan::after,.axe-explan::after,.pickaxe-explan::after,.shovel-explan::after,
+.tree-leaves-explan::after,.wood-explan::after,.rock-explan::after,.soil-explan::after{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 1vw;
+    color: yellow;
+    background: rgba(0, 0, 0, 0.5);
+    letter-spacing: 2px;
+    font-size: 1.2vw;
+    text-shadow: 0 0 1vw black;
+}
+.sword-explan::after{
+    content: 'sword';
+}
+.axe-explan::after{
+    content: 'axe';
+}
+.pickaxe-explan::after{
+    content: 'pickaxe';
+}
+.shovel-explan::after{
+    content: 'shovel';
+}
+.tree-leaves-explan::after{
+    content: 'tree';  
+}
+.wood-explan::after{
+    content: 'wood';  
+}
+.rock-explan::after{
+    content: 'rock';  
+}
+.soil-explan::after {
+    content: 'soil';
+}
 .how-to-play-container .header-wrap a {
     color: yellow;
     text-decoration: none;
@@ -171,7 +237,7 @@ html,body{
     border-radius: 7px;
     color: white;
     padding: 1vw 2vw;
-    margin: 5vh 0 0 0 ;
+    margin: 1vw 0 0 0;
     cursor: pointer;
     transition: .25s ease-in-out;
     font-size: calc(1vw + 1rem);
