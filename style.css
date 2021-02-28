@@ -516,8 +516,11 @@ position: relative;
 @keyframes minecraft {50% {letter-spacing: 10px;}}
 
 @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-  
     html,body{
         overflow: scroll;
+    }
+    .minecraft-world {
+        grid-template-rows: repeat(40,auto);
+        grid-template-columns: repeat(20,auto);
     }
   }
